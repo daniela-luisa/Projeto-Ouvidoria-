@@ -1,0 +1,278 @@
+/* ── Layout geral ─────────────────────────────────────────────────────────── */
+.pagina {
+  display: flex;
+  min-height: 100dvh;
+}
+
+/* ── Coluna esquerda (azul escuro, 40%) ──────────────────────────────────── */
+.lateral {
+  width: 40%;
+  background-color: #1b2b4b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lateralConteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 32px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.cadeadoWrapper {
+  width: 88px;
+  height: 88px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.lateralNome {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.lateralSubtitulo {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+  max-width: 220px;
+  margin: 0;
+}
+
+/* ── Coluna direita (branca, 60%) ────────────────────────────────────────── */
+.formularioColuna {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.formularioInner {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Cabeçalho do formulário ─────────────────────────────────────────────── */
+.cabecalho {
+  margin-bottom: 24px;
+}
+
+.titulo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 6px;
+  letter-spacing: -0.4px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Mensagem de erro ────────────────────────────────────────────────────── */
+.erro {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 20px;
+}
+
+/* ── Formulário ──────────────────────────────────────────────────────────── */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Campo individual ────────────────────────────────────────────────────── */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #374151;
+  text-transform: uppercase;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #111827;
+  background-color: #f9fafb;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus {
+  border-color: #2d5fa3;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 95, 163, 0.12);
+}
+
+.input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Wrapper do campo senha ──────────────────────────────────────────────── */
+.senhaWrapper {
+  position: relative;
+}
+
+.senhaWrapper .input {
+  padding-right: 44px;
+}
+
+.toggleSenha {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.toggleSenha:hover {
+  color: #374151;
+}
+
+.toggleSenha:focus-visible {
+  outline: 2px solid #2d5fa3;
+  outline-offset: 2px;
+}
+
+/* ── Botão entrar ────────────────────────────────────────────────────────── */
+.botao {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2d5fa3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.botao:hover:not(:disabled) {
+  background-color: #1e4a8a;
+}
+
+.botao:active:not(:disabled) {
+  background-color: #173d73;
+  transform: scale(0.99);
+}
+
+.botao:focus-visible {
+  outline: 2px solid #2d5fa3;
+  outline-offset: 2px;
+}
+
+.botao:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: girar 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Rodapé ──────────────────────────────────────────────────────────────── */
+.rodape {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.linkSuporte {
+  font-size: 13px;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.linkSuporte:hover {
+  color: #2d5fa3;
+  text-decoration: underline;
+}
+
+/* ── Responsivo: empilha em telas pequenas ───────────────────────────────── */
+@media (max-width: 640px) {
+  .pagina {
+    flex-direction: column;
+  }
+
+  .lateral {
+    width: 100%;
+    padding: 40px 24px;
+  }
+
+  .lateralConteudo {
+    padding: 0;
+  }
+
+  .formularioColuna {
+    padding: 40px 24px;
+  }
+}

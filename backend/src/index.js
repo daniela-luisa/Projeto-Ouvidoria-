@@ -1,15 +1,16 @@
 'use strict'
 
 require('dotenv').config()
+
+const pool = require('./db')
 const express = require('express')
 const cors = require('cors')
-
-const authRoutes = require('./routes/auth')
-const solicitacoesRoutes = require('./routes/solicitacoes')
-const comentariosRoutes = require('./routes/comentarios')
-const usuariosRoutes = require('./routes/usuarios')
-const categoriasRoutes = require('./routes/categorias')
-const logsRoutes = require('./routes/logs')
+// const authRoutes = require('./routes/auth')
+// const solicitacoesRoutes = require('./routes/solicitacoes')
+// const comentariosRoutes = require('./routes/comentarios')
+// const usuariosRoutes = require('./routes/usuarios')
+// const categoriasRoutes = require('./routes/categorias')
+// const logsRoutes = require('./routes/logs')
 
 const app = express()
 
@@ -21,12 +22,12 @@ app.use(cors({
 app.use(express.json())
 
 // ─── Rotas ────────────────────────────────────────────────────────────────
-app.use('/auth', authRoutes)
-app.use('/solicitacoes', solicitacoesRoutes)
-app.use('/comentarios', comentariosRoutes)
-app.use('/usuarios', usuariosRoutes)
-app.use('/categorias', categoriasRoutes)
-app.use('/logs', logsRoutes)
+// app.use('/auth', authRoutes)
+// app.use('/solicitacoes', solicitacoesRoutes)
+// app.use('/comentarios', comentariosRoutes)
+// app.use('/usuarios', usuariosRoutes)
+// app.use('/categorias', categoriasRoutes)
+// app.use('/logs', logsRoutes)
 
 // ─── Health check ─────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => {
@@ -48,6 +49,22 @@ app.use((err, _req, res, _next) => {
 
 // ─── Inicialização ────────────────────────────────────────────────────────
 const PORT = process.env.PORT ?? 3000
-app.listen(PORT, () => {
-  console.log(`NossaVoz API rodando na porta ${PORT}`)
-})
+
+async function startServer() {
+  try {
+    const result = await pool.query('SELECT NOW()')
+
+    console.log('✅ Banco conectado com sucesso!')
+    console.log('🕒 Horário do banco:', result.rows[0].now)
+
+    app.listen(PORT, () => {
+      console.log(`🚀 NossaVoz API rodando na porta ${PORT}`)
+    })
+  } catch (error) {
+    console.error('❌ Erro ao conectar no banco:')
+    console.error(error.message)
+    process.exit(1)
+  }
+}
+
+startServer()

@@ -6,11 +6,11 @@ const pool = require('./db')
 const express = require('express')
 const cors = require('cors')
 const authRoutes = require('./routes/auth')
-// const solicitacoesRoutes = require('./routes/solicitacoes')
-// const comentariosRoutes = require('./routes/comentarios')
+const solicitacoesRoutes = require('./routes/solicitacoes')
+const comentariosRoutes = require('./routes/comentarios')
 const usuariosRoutes = require('./routes/usuarios')
 const categoriasRoutes = require('./routes/categorias')
-// const logsRoutes = require('./routes/logs')
+const logsRoutes = require('./routes/logs')
 
 const app = express()
 
@@ -23,11 +23,11 @@ app.use(express.json())
 
 // ─── Rotas ────────────────────────────────────────────────────────────────
 app.use('/auth', authRoutes)
-// app.use('/solicitacoes', solicitacoesRoutes)
-// app.use('/comentarios', comentariosRoutes)
+app.use('/solicitacoes', solicitacoesRoutes)
+app.use('/comentarios', comentariosRoutes)
 app.use('/usuarios', usuariosRoutes)
 app.use('/categorias', categoriasRoutes)
-// app.use('/logs', logsRoutes)
+app.use('/logs', logsRoutes)
 
 // ─── Health check ─────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => {

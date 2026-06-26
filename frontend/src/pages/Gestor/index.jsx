@@ -177,7 +177,7 @@ function PainelUsuarios() {
                 </tr>
               </thead>
               <tbody>
-                {usuarios.map((u) => (
+                {usuarios.filter(u => u.perfil !== 'solicitante').map((u) => (
                   <tr key={u.id}>
                     <td>{u.nome}</td>
                     <td>{u.email}</td>

@@ -714,9 +714,25 @@
   gap: 8px;
 }
 
+.comentarioAutor {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .comentarioCabecalho strong {
   font-size: 13px;
   color: #111827;
+}
+
+.badgeEquipe {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-radius: 999px;
+  padding: 1px 8px;
 }
 
 .comentarioMeta {

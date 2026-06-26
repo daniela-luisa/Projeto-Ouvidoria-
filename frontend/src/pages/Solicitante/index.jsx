@@ -67,7 +67,6 @@ function PainelNovaSolicitacao({ onSucesso }) {
   const [form, setForm] = useState({
     titulo: '',
     categoria_id: '',
-    anonima: false,
     descricao: '',
   })
   const [erro, setErro] = useState('')
@@ -107,10 +106,9 @@ function PainelNovaSolicitacao({ onSucesso }) {
       const resposta = await api.post('/solicitacoes/criar', {
         titulo: form.titulo.trim(),
         categoria_id: form.categoria_id,
-        anonima: form.anonima,
         descricao: form.descricao.trim(),
       })
-      setConfirmacao({ protocolo: resposta.protocolo, anonima: form.anonima })
+      setConfirmacao(true)
     } catch (err) {
       setErro(err.message ?? 'Erro ao enviar solicitação. Tente novamente.')
     } finally {
@@ -119,7 +117,7 @@ function PainelNovaSolicitacao({ onSucesso }) {
   }
 
   function handleNova() {
-    setForm({ titulo: '', categoria_id: '', anonima: false, descricao: '' })
+    setForm({ titulo: '', categoria_id: '', descricao: '' })
     setErro('')
     setConfirmacao(null)
   }
@@ -134,17 +132,8 @@ function PainelNovaSolicitacao({ onSucesso }) {
           </div>
           <h1 className={styles.confirmacaoTitulo}>Solicitação enviada!</h1>
           <p className={styles.confirmacaoTexto}>
-            Sua solicitação foi registrada com sucesso.
-            {confirmacao.anonima
-              ? ' Como você optou pelo envio anônimo, não constará sua identificação no processo.'
-              : ' Nossa equipe analisará em breve e você será notificado.'}
+            Sua solicitação foi registrada com sucesso. Nossa equipe analisará em breve.
           </p>
-
-          <div className={styles.protocoloBox}>
-            <span className={styles.protocoloLabel}>Número de protocolo</span>
-            <span className={styles.protocoloNumero}>{confirmacao.protocolo}</span>
-            <span className={styles.protocoloDica}>Guarde este número para acompanhar sua solicitação.</span>
-          </div>
 
           <div className={styles.confirmacaoAcoes}>
             <button className={styles.botaoSecundario} onClick={handleNova}>
@@ -245,35 +234,6 @@ function PainelNovaSolicitacao({ onSucesso }) {
             <span className={styles.contador}>{form.descricao.length}/2000</span>
           </div>
 
-          {/* Divisor + opção anônima */}
-          <div className={styles.divisor} />
-
-          <div className={styles.anonimidadeBox}>
-            <label className={styles.checkboxLabel}>
-              <input
-                type="checkbox"
-                name="anonima"
-                checked={form.anonima}
-                onChange={handleChange}
-                disabled={enviando}
-                className={styles.checkbox}
-              />
-              <span>
-                <strong>Enviar de forma anônima</strong>
-                <span className={styles.checkboxDescricao}>
-                  {' '}— sua identidade não será revelada aos analistas. Você ainda receberá o número de protocolo.
-                </span>
-              </span>
-            </label>
-
-            {form.anonima && (
-              <p className={styles.avisoAnonimo}>
-                <IconInfo />
-                Solicitações anônimas limitam nossa capacidade de solicitar esclarecimentos adicionais. Forneça o máximo de detalhes possível.
-              </p>
-            )}
-          </div>
-
           <div className={styles.formAcoes}>
             <button
               type="button"
@@ -283,7 +243,7 @@ function PainelNovaSolicitacao({ onSucesso }) {
                 if (form.titulo || form.descricao) {
                   if (!confirm('Descartar o rascunho?')) return
                 }
-                setForm({ titulo: '', categoria_id: '', anonima: false, descricao: '' })
+                setForm({ titulo: '', categoria_id: '', descricao: '' })
                 setErro('')
               }}
             >
@@ -367,7 +327,6 @@ function PainelMinhasSolicitacoes() {
             <table className={styles.tabela}>
               <thead>
                 <tr>
-                  <th>Protocolo</th>
                   <th>Título</th>
                   <th>Categoria</th>
                   <th>Status</th>
@@ -378,9 +337,6 @@ function PainelMinhasSolicitacoes() {
               <tbody>
                 {lista.map((s) => (
                   <tr key={s.id}>
-                    <td>
-                      <span className={styles.protocolo}>{s.protocolo}</span>
-                    </td>
                     <td>{s.titulo}</td>
                     <td>{s.categoria}</td>
                     <td><BadgeStatus status={s.status} /></td>
@@ -442,10 +398,8 @@ function ModalDetalhe({ solicitacao: s, onFechar }) {
           <div>
             <h2 className={styles.modalTitulo}>{s.titulo}</h2>
             <div className={styles.metadados}>
-              <span><strong>Protocolo:</strong> {s.protocolo ?? '—'}</span>
               <span><strong>Categoria:</strong> {s.categoria ?? '—'}</span>
               <span><strong>Enviada em:</strong> {formatarData(s.criado_em)}</span>
-              {s.anonima && <span className={styles.tagAnonima}>Anônima</span>}
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, flexShrink: 0 }}>
@@ -470,14 +424,17 @@ function ModalDetalhe({ solicitacao: s, onFechar }) {
           ) : comentarios.length === 0 ? (
             <div className={styles.semResposta}>
               <IconRelogio />
-              Aguardando análise — você será notificado quando houver uma resposta.
+              Aguardando análise da equipe.
             </div>
           ) : (
             <div className={styles.comentariosLista}>
               {comentarios.map((c) => (
                 <div key={c.id} className={`${styles.comentario} ${styles.comentarioVisivel}`}>
                   <div className={styles.comentarioCabecalho}>
-                    <strong>{c.autor_nome}</strong>
+                    <span className={styles.comentarioAutor}>
+                      <strong>{c.autor ?? 'Equipe NossaVoz'}</strong>
+                      <span className={styles.badgeEquipe}>Ouvidoria</span>
+                    </span>
                     <span className={styles.comentarioMeta}>{formatarDataHora(c.criado_em)}</span>
                   </div>
                   <p className={styles.comentarioTexto}>{c.conteudo}</p>

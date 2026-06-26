@@ -123,6 +123,7 @@ async function criarUsuario(req, res, next) {
 async function listarUsuarios(req, res, next) {
   try {
     const { perfil, ativo } = req.query
+    const executor = req.usuario
 
     let sql = `
       SELECT id, nome, email, perfil, ativo, criado_em
@@ -130,6 +131,11 @@ async function listarUsuarios(req, res, next) {
       WHERE 1=1
     `
     const params = []
+
+    // Gestor não vê solicitantes — apenas admin, gestores e analistas
+    if (executor.perfil === 'gestor') {
+      sql += ` AND perfil IN ('admin', 'gestor', 'analista')`
+    }
 
     if (perfil) {
       params.push(perfil)
@@ -196,6 +202,14 @@ async function desativarUsuario(req, res, next) {
     // Não pode desativar a si mesmo
     if (id === executor.id) {
       return res.status(400).json({ erro: 'Você não pode desativar sua própria conta.' })
+    }
+
+    // Gestor não pode desativar solicitante
+    if (executor.perfil === 'gestor') {
+      const alvo = await db.query('SELECT perfil FROM usuarios WHERE id = $1 LIMIT 1', [id])
+      if (alvo.rows[0]?.perfil === 'solicitante') {
+        return res.status(403).json({ erro: 'Gestores não podem desativar solicitantes.' })
+      }
     }
 
     const resultado = await db.query(

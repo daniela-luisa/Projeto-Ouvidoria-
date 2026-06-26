@@ -1,0 +1,752 @@
+/* ── Layout geral ─────────────────────────────────────────────────────────── */
+.pagina {
+  display: flex;
+  min-height: 100dvh;
+  background-color: #f3f4f6;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: 240px;
+  background-color: #1b2b4b;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 100dvh;
+}
+
+.sidebarTopo {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebarNome {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+.sidebarPerfil {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sidebarNav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebarBotao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.sidebarBotao:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.sidebarBotaoAtivo {
+  background-color: rgba(45, 95, 163, 0.5);
+  color: #ffffff;
+}
+
+.sidebarRodape {
+  padding: 16px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.botaoSair {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.botaoSair:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+/* ── Conteúdo principal ───────────────────────────────────────────────────── */
+.conteudo {
+  flex: 1;
+  padding: 36px 40px;
+  overflow-y: auto;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.titulo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Formulário principal ─────────────────────────────────────────────────── */
+.formCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 28px 32px;
+  max-width: 680px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #374151;
+  text-transform: uppercase;
+}
+
+.obrigatorio {
+  color: #b91c1c;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #111827;
+  background-color: #f9fafb;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #2d5fa3;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 95, 163, 0.12);
+}
+
+.input:disabled,
+.select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #111827;
+  background-color: #f9fafb;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  line-height: 1.55;
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+.textarea:focus {
+  border-color: #2d5fa3;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 95, 163, 0.12);
+}
+
+.textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.contador {
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: right;
+}
+
+.carregandoSelect {
+  font-size: 14px;
+  color: #9ca3af;
+  padding: 10px 0;
+}
+
+/* ── Aviso quando não há categorias ──────────────────────────────────────── */
+.avisoCategoria {
+  font-size: 13px;
+  color: #b45309;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+}
+
+/* ── Divisor ──────────────────────────────────────────────────────────────── */
+.divisor {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 8px 0 20px;
+}
+
+/* ── Opção de anonimidade ─────────────────────────────────────────────────── */
+.anonimidadeBox {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #111827;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.5;
+}
+
+.checkbox {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  accent-color: #2d5fa3;
+  cursor: pointer;
+}
+
+.checkboxDescricao {
+  color: #6b7280;
+}
+
+.avisoAnonimo {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 13px;
+  color: #92400e;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Ações do formulário ──────────────────────────────────────────────────── */
+.formAcoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ── Botões ───────────────────────────────────────────────────────────────── */
+.botaoPrimario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #2d5fa3;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.botaoPrimario:hover {
+  background-color: #1e4a8a;
+}
+
+.botaoPrimario:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botaoSecundario {
+  padding: 10px 18px;
+  background: none;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  font-family: inherit;
+}
+
+.botaoSecundario:hover {
+  background-color: #f3f4f6;
+}
+
+.botaoSecundario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ──────────────────────────────────────────────────────────────── */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: girar 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Mensagens de feedback ────────────────────────────────────────────────── */
+.erro {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+/* ── Tela de confirmação ──────────────────────────────────────────────────── */
+.confirmacaoWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.confirmacaoCard {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 40px 36px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+.confirmacaoIcone {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #d1fae5;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.confirmacaoTitulo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
+}
+
+.confirmacaoTexto {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 28px;
+  line-height: 1.6;
+}
+
+.protocoloBox {
+  width: 100%;
+  background-color: #f9fafb;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.protocoloLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.protocoloNumero {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b2b4b;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.protocoloDica {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.confirmacaoAcoes {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Tabela de solicitações ───────────────────────────────────────────────── */
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.tabelaWrapper {
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabela thead {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.tabela td {
+  padding: 14px 16px;
+  color: #111827;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tabela tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela tr:hover td {
+  background-color: #f9fafb;
+}
+
+.protocolo {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  font-size: 13px;
+  color: #374151;
+  background-color: #f3f4f6;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* ── Botão de ação na tabela ──────────────────────────────────────────────── */
+.botaoAcao {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid;
+  transition: opacity 0.15s;
+  font-family: inherit;
+}
+
+.botaoVer {
+  color: #1e40af;
+  border-color: #bfdbfe;
+  background-color: #eff6ff;
+}
+
+.botaoVer:hover {
+  background-color: #dbeafe;
+}
+
+/* ── Estado vazio ─────────────────────────────────────────────────────────── */
+.estadoVazio {
+  padding: 48px 24px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* ── Filtro de status ─────────────────────────────────────────────────────── */
+.selectFiltro {
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #374151;
+  background-color: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.selectFiltro:focus {
+  border-color: #2d5fa3;
+  box-shadow: 0 0 0 3px rgba(45, 95, 163, 0.12);
+}
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badgeAberta     { background-color: #dbeafe; color: #1e40af; }
+.badgeEmAnalise  { background-color: #fef3c7; color: #92400e; }
+.badgeRespondida { background-color: #d1fae5; color: #065f46; }
+.badgeEncerrada  { background-color: #f3f4f6; color: #6b7280; }
+
+.tagAnonima {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+/* ── Modal de detalhes ────────────────────────────────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modalGrande {
+  background-color: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalGrandeCabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modalTitulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+.metadados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+  align-items: center;
+}
+
+.metadados strong {
+  color: #374151;
+}
+
+.botaoFechar {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.botaoFechar:hover {
+  color: #374151;
+}
+
+/* ── Descrição no modal ───────────────────────────────────────────────────── */
+.descricaoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.descricaoTexto {
+  font-size: 14px;
+  color: #374151;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* ── Lista de comentários ─────────────────────────────────────────────────── */
+.comentariosLista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comentario {
+  border-radius: 8px;
+  padding: 12px 14px;
+  border: 1px solid;
+}
+
+.comentarioVisivel {
+  background-color: #f0fdf4;
+  border-color: #a7f3d0;
+}
+
+.comentarioCabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.comentarioCabecalho strong {
+  font-size: 13px;
+  color: #111827;
+}
+
+.comentarioMeta {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.comentarioTexto {
+  font-size: 13px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* ── Sem resposta ainda ───────────────────────────────────────────────────── */
+.semResposta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+/* ── Rodapé do modal ──────────────────────────────────────────────────────── */
+.modalRodape {
+  display: flex;
+  justify-content: flex-end;
+}

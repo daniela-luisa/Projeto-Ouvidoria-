@@ -45,6 +45,19 @@ async function criarUsuario(req, res, next) {
       })
     }
 
+    // Bloqueia se já existe um gestor ativo
+    if (perfil === 'gestor' && criador.perfil === 'admin') {
+      const gestoresExistentes = await db.query(
+        `SELECT 1 FROM usuarios WHERE perfil = 'gestor' AND ativo = true LIMIT 1`
+      )
+
+      if (gestoresExistentes.rows.length > 0) {
+        return res.status(409).json({
+          erro: 'Ja existe um gestor ativo no sistema. O administrador so pode criar um unico gestor.',
+        })
+      }
+    }
+
     // ── Analista precisa ter ao menos uma categoria vinculada ──────────────
     if (perfil === 'analista') {
       if (!Array.isArray(categorias) || categorias.length === 0) {

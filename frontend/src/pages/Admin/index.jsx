@@ -145,7 +145,7 @@ function PainelGestores() {
 
       <div className={styles.avisoAcesso}>
         <IconInfo />
-        O administrador tem acesso exclusivo à criação de gestores.
+        O administrador tem acesso exclusivo à criação do gestor.
         Gestores gerenciam usuários, categorias, solicitações e logs do sistema.
       </div>
 
